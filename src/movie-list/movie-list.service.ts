@@ -18,7 +18,16 @@ export class MovieListService {
     }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} movieList`;
+  async findOne(id: number) {
+    try {
+      const enpoint = `/movie/${id}`;
+      let result = await this.sharedHttpService.get(enpoint);
+      return result;
+    } catch (error) {
+      throw new HttpException(
+        error.response?.data?.status_message || 'Failed to fetch movie',
+        error.response?.status || HttpStatus.BAD_GATEWAY,
+      );
+    }
   }
 }

@@ -5,15 +5,18 @@ import { MovieListService } from './movie-list.service';
 export class MovieListController {
   constructor(private readonly movieListService: MovieListService) {}
 
-  @Get(':timeWindow')
-  async litsAllMovies(
+  @Get('trending/:timeWindow')
+  async litsAllTrendingMovies(
     @Param('timeWindow') timeWindow?: string,
     @Query('pageNo') pageNo?: string,
   ) {
     try {
       const validTimeWindow = timeWindow === 'week' ? 'week' : 'day';
       const page = pageNo ? parseInt(pageNo, 10) : 1;
-      return await this.movieListService.findAll(page, validTimeWindow);
+      return await this.movieListService.findAllTrendingMovies(
+        page,
+        validTimeWindow,
+      );
     } catch (error) {
       throw error;
     }

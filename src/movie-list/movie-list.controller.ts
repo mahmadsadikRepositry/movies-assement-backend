@@ -1,4 +1,11 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  HttpException,
+  HttpStatus,
+  Param,
+  Query,
+} from '@nestjs/common';
 import { MovieListService } from './movie-list.service';
 
 @Controller('movie/')
@@ -20,7 +27,24 @@ export class MovieListController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.movieListService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    //Ensure Id is provided
+    if (!id) {
+      throw new HttpException('Movie ID is required', HttpStatus.BAD_REQUEST);
+    }
+    const movieId = parseInt(id, 10);
+
+    if (isNaN(movieId)) {
+      throw new HttpException(
+        'Movie ID must be a number',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+    try {
+      const movie = await this.movieListService.findOne(+id);
+      return movie;
+    } catch (error) {
+      throw error;
+    }
   }
 }

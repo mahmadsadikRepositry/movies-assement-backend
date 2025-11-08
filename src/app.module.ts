@@ -3,9 +3,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { MovieListModule } from './movie-list/movie-list.module';
+import { SharedModule } from './shared/shared.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), MovieListModule],
+  imports: [ConfigModule.forRoot(), MovieListModule, SharedModule],
   controllers: [AppController],
   providers: [AppService],
 })

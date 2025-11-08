@@ -22,6 +22,11 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+# Environment Setup
+
+Please refer to the `.example.env` file to cofigure Enviroment Varialbles.
+Open the new .env file and add your TMDB credentials.
+please make sure you have your account setp with [TMDB](https://www.themoviedb.org/)
 
 ## Run tests
 

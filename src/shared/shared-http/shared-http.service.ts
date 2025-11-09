@@ -21,7 +21,7 @@ export class SharedHttpService {
       return response.data;
     } catch (error) {
       throw new HttpException(
-        error.response.data.message || 'Failed to Fetch Data From TMDB',
+        error.response?.data?.message || 'Failed to Fetch Data From TMDB',
         error.response?.status || HttpStatus.BAD_GATEWAY,
       );
     }

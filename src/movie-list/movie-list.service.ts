@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { SharedHttpService } from 'src/shared/shared-http/shared-http.service';
+import { SharedHttpService } from '../shared/shared-http/shared-http.service';
 
 @Injectable()
 export class MovieListService {
